@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F401B48120057D41004C487C /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F401B48020057D41004C487C /* SearchResultCell.xib */; };
+		F401B48320057F96004C487C /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401B48220057F96004C487C /* SearchResultCell.swift */; };
+		F401B48520058139004C487C /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F401B48420058139004C487C /* NothingFoundCell.xib */; };
 		F4553B0420050E9E00884392 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4553B0320050E9E00884392 /* AppDelegate.swift */; };
 		F4553B0620050E9E00884392 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4553B0520050E9E00884392 /* SearchViewController.swift */; };
 		F4553B0920050E9E00884392 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4553B0720050E9E00884392 /* Main.storyboard */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F401B48020057D41004C487C /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		F401B48220057F96004C487C /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		F401B48420058139004C487C /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		F4553B0020050E9E00884392 /* procura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = procura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4553B0320050E9E00884392 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4553B0520050E9E00884392 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -61,11 +67,14 @@
 				F4553B1520050F1F00884392 /* .gitignore */,
 				F4553B0320050E9E00884392 /* AppDelegate.swift */,
 				F4553B0520050E9E00884392 /* SearchViewController.swift */,
-				F4553B0720050E9E00884392 /* Main.storyboard */,
-				F4553B0A20050E9E00884392 /* Assets.xcassets */,
-				F4553B0C20050E9E00884392 /* LaunchScreen.storyboard */,
-				F4553B0F20050E9E00884392 /* Info.plist */,
 				F4553B1720051A2100884392 /* SearchResult.swift */,
+				F401B48220057F96004C487C /* SearchResultCell.swift */,
+				F4553B0720050E9E00884392 /* Main.storyboard */,
+				F401B48020057D41004C487C /* SearchResultCell.xib */,
+				F401B48420058139004C487C /* NothingFoundCell.xib */,
+				F4553B0C20050E9E00884392 /* LaunchScreen.storyboard */,
+				F4553B0A20050E9E00884392 /* Assets.xcassets */,
+				F4553B0F20050E9E00884392 /* Info.plist */,
 			);
 			path = procura;
 			sourceTree = "<group>";
@@ -130,6 +139,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4553B1620050F1F00884392 /* .gitignore in Resources */,
+				F401B48120057D41004C487C /* SearchResultCell.xib in Resources */,
+				F401B48520058139004C487C /* NothingFoundCell.xib in Resources */,
 				F4553B0E20050E9E00884392 /* LaunchScreen.storyboard in Resources */,
 				F4553B0B20050E9E00884392 /* Assets.xcassets in Resources */,
 				F4553B0920050E9E00884392 /* Main.storyboard in Resources */,
@@ -145,6 +156,7 @@
 			files = (
 				F4553B0620050E9E00884392 /* SearchViewController.swift in Sources */,
 				F4553B1820051A2100884392 /* SearchResult.swift in Sources */,
+				F401B48320057F96004C487C /* SearchResultCell.swift in Sources */,
 				F4553B0420050E9E00884392 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
