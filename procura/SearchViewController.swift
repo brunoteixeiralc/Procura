@@ -33,6 +33,23 @@ class SearchViewController: UIViewController {
         let cellNothingNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
         tableview.register(cellNothingNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
     }
+    
+    func iTunesURL(searchText:String) -> URL{
+        let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        let urlString = String(format:"https://itunes.apple.com/search?term=%@",encodedText)
+        let url = URL(string:urlString)
+        
+        return url!
+    }
+    
+    func performStoreReques(with url:URL) -> String?{
+        do {
+            return try String(contentsOf:url,encoding:.utf8)
+        } catch {
+            print("Error \(error.localizedDescription)")
+            return nil
+        }
+    }
 }
 
 extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
@@ -83,21 +100,22 @@ extension SearchViewController: UISearchBarDelegate{
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-
-        hasSearched = true
-        searchResults = []
-        let searchResult = SearchResult()
-        
-        if searchBar.text == "Bruno"{
-            for i in 0...2 {
-                searchResult.name = String(format: "Fake Result %d for", i)
-                searchResult.artistName = searchBar.text!
-                searchResults.append(searchResult)
+        if !searchBar.text!.isEmpty{
+            
+            searchBar.resignFirstResponder()
+            
+            hasSearched = true
+            searchResults = []
+            
+            let url = iTunesURL(searchText: searchBar.text!)
+            print("URL: \(url)")
+            
+            if let jsonString = performStoreReques(with: url){
+                print("json: \(jsonString)")
             }
+            
+            tableview.reloadData()
         }
-        
-        tableview.reloadData()
     }
 }
 
