@@ -20,5 +20,4 @@ class SearchResultCell: UITableViewCell {
         selectedView.backgroundColor = UIColor(red: 46/255, green: 204/255,blue: 113/255, alpha: 0.2)
         selectedBackgroundView = selectedView
     }
-    
 }

@@ -36,19 +36,40 @@ class SearchViewController: UIViewController {
     
     func iTunesURL(searchText:String) -> URL{
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let urlString = String(format:"https://itunes.apple.com/search?term=%@",encodedText)
+        let urlString = String(format:"https://itunes.apple.com/search?term=%@&country=br",encodedText)
         let url = URL(string:urlString)
         
         return url!
     }
     
-    func performStoreReques(with url:URL) -> String?{
+    func performStoreReques(with url:URL) -> Data?{
         do {
-            return try String(contentsOf:url,encoding:.utf8)
+            return try Data(contentsOf:url)
         } catch {
             print("Error \(error.localizedDescription)")
+            showNetWorkError()
             return nil
         }
+    }
+    
+    func parse(data:Data) -> [SearchResult]{
+        do{
+            let decoder = JSONDecoder()
+            let result = try decoder.decode(ResultArray.self, from: data)
+            return result.results
+        }catch{
+            print("Json error \(error)")
+            return []
+        }
+    }
+    
+    func showNetWorkError(){
+        let alert = UIAlertController(title: "Opps...", message: "Houve um erro para acessar a loja da Itunes. Por favor tente novamente.", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alert.addAction(action)
+        present(alert,animated: true, completion: nil)
     }
 }
 
@@ -72,11 +93,10 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier:TableViewCellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
             
             let searchResult = searchResults[indexPath.row]
-            cell.nameLabel.text = searchResult.name
+            cell.nameLabel.text = searchResult.trackName
             cell.artistNameLabel!.text = searchResult.artistName
             return cell
         }
-        
         
     }
     
@@ -110,8 +130,8 @@ extension SearchViewController: UISearchBarDelegate{
             let url = iTunesURL(searchText: searchBar.text!)
             print("URL: \(url)")
             
-            if let jsonString = performStoreReques(with: url){
-                print("json: \(jsonString)")
+            if let data = performStoreReques(with: url){
+                searchResults = parse(data: data)
             }
             
             tableview.reloadData()
