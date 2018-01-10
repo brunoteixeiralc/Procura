@@ -45,6 +45,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F401B48620058CD3004C487C /* storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				F4553B0720050E9E00884392 /* Main.storyboard */,
+				F401B48020057D41004C487C /* SearchResultCell.xib */,
+				F401B48420058139004C487C /* NothingFoundCell.xib */,
+				F4553B0C20050E9E00884392 /* LaunchScreen.storyboard */,
+			);
+			path = storyboard;
+			sourceTree = "<group>";
+		};
 		F4553AF720050E9D00884392 = {
 			isa = PBXGroup;
 			children = (
@@ -69,10 +80,7 @@
 				F4553B0520050E9E00884392 /* SearchViewController.swift */,
 				F4553B1720051A2100884392 /* SearchResult.swift */,
 				F401B48220057F96004C487C /* SearchResultCell.swift */,
-				F4553B0720050E9E00884392 /* Main.storyboard */,
-				F401B48020057D41004C487C /* SearchResultCell.xib */,
-				F401B48420058139004C487C /* NothingFoundCell.xib */,
-				F4553B0C20050E9E00884392 /* LaunchScreen.storyboard */,
+				F401B48620058CD3004C487C /* storyboard */,
 				F4553B0A20050E9E00884392 /* Assets.xcassets */,
 				F4553B0F20050E9E00884392 /* Info.plist */,
 			);
