@@ -150,19 +150,32 @@ extension SearchViewController: UISearchBarDelegate{
             let url = self.iTunesURL(searchText: searchBar.text!)
             print("URL: \(url)")
             
-            let queue = DispatchQueue.global()
-            queue.async {
-                if let data = self.performStoreReques(with: url){
-                    self.searchResults = self.parse(data: data)
-                    self.searchResults.sort(by: <)
-                    
-                    DispatchQueue.main.async {
-                        self.isLoading = false
-                        self.tableview.reloadData()
-                    }
+            let session = URLSession.shared
+            let dataTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
+                if let error = error{
+                    print("Falha \(error)")
                     return
+                } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200{
+                    if let data = data{
+                        self.searchResults = self.parse(data: data)
+                        self.searchResults.sort(by: <)
+                        DispatchQueue.main.async {
+                            self.isLoading = false
+                            self.tableview.reloadData()
+                        }
+                        return
+                    }
+                }else{
+                    print("Falha \(response!)")
                 }
-            }
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.hasSearched = false
+                    self.tableview.reloadData()
+                    self.showNetWorkError()
+                }
+            })
+            dataTask.resume()
         }
     }
 }
