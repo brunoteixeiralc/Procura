@@ -22,6 +22,7 @@ class SearchViewController: UIViewController {
     var searchResults = [SearchResult]()
     var hasSearched = false
     var isLoading = false
+    var dataTask: URLSessionDataTask?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,6 +142,8 @@ extension SearchViewController: UISearchBarDelegate{
             
             searchBar.resignFirstResponder()
             
+            dataTask?.cancel()
+            
             isLoading = true
             tableview.reloadData()
             
@@ -151,11 +154,11 @@ extension SearchViewController: UISearchBarDelegate{
             print("URL: \(url)")
             
             let session = URLSession.shared
-            let dataTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
-                if let error = error{
-                    print("Falha \(error)")
+            dataTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
+                if let error = error as NSError?, error.code == -999{
                     return
-                } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200{
+                }
+                else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200{
                     if let data = data{
                         self.searchResults = self.parse(data: data)
                         self.searchResults.sort(by: <)
@@ -175,7 +178,7 @@ extension SearchViewController: UISearchBarDelegate{
                     self.showNetWorkError()
                 }
             })
-            dataTask.resume()
+            dataTask?.resume()
         }
     }
 }
