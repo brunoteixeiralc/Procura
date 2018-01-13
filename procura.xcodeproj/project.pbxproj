@@ -56,6 +56,30 @@
 			path = storyboard;
 			sourceTree = "<group>";
 		};
+		F4534FBC200A96C800262B29 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				F401B48220057F96004C487C /* SearchResultCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		F4534FBD200A96CD00262B29 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F4553B1720051A2100884392 /* SearchResult.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F4534FBE200A96D300262B29 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				F4553B0520050E9E00884392 /* SearchViewController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
 		F4553AF720050E9D00884392 = {
 			isa = PBXGroup;
 			children = (
@@ -77,9 +101,9 @@
 			children = (
 				F4553B1520050F1F00884392 /* .gitignore */,
 				F4553B0320050E9E00884392 /* AppDelegate.swift */,
-				F4553B0520050E9E00884392 /* SearchViewController.swift */,
-				F4553B1720051A2100884392 /* SearchResult.swift */,
-				F401B48220057F96004C487C /* SearchResultCell.swift */,
+				F4534FBE200A96D300262B29 /* controller */,
+				F4534FBD200A96CD00262B29 /* model */,
+				F4534FBC200A96C800262B29 /* cell */,
 				F401B48620058CD3004C487C /* storyboard */,
 				F4553B0A20050E9E00884392 /* Assets.xcassets */,
 				F4553B0F20050E9E00884392 /* Info.plist */,
