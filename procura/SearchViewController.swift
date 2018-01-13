@@ -85,6 +85,10 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if searchResults.count == 0{
@@ -94,7 +98,7 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             
             let searchResult = searchResults[indexPath.row]
             cell.nameLabel.text = searchResult.trackName
-            cell.artistNameLabel!.text = searchResult.artistName
+            cell.artistNameLabel!.text = "\(searchResult.artistName) (\(searchResult.type))"
             return cell
         }
         
@@ -132,6 +136,7 @@ extension SearchViewController: UISearchBarDelegate{
             
             if let data = performStoreReques(with: url){
                 searchResults = parse(data: data)
+                searchResults.sort(by: <)
             }
             
             tableview.reloadData()
