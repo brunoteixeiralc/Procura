@@ -10,12 +10,12 @@
 		F401B48120057D41004C487C /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F401B48020057D41004C487C /* SearchResultCell.xib */; };
 		F401B48320057F96004C487C /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F401B48220057F96004C487C /* SearchResultCell.swift */; };
 		F401B48520058139004C487C /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F401B48420058139004C487C /* NothingFoundCell.xib */; };
+		F40AC6F8200EC24B0090AFF0 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC6F7200EC24B0090AFF0 /* UIImageView+DownloadImage.swift */; };
 		F4534FC0200A9E1E00262B29 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4534FBF200A9E1E00262B29 /* LoadingCell.xib */; };
 		F4553B0420050E9E00884392 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4553B0320050E9E00884392 /* AppDelegate.swift */; };
 		F4553B0620050E9E00884392 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4553B0520050E9E00884392 /* SearchViewController.swift */; };
 		F4553B0920050E9E00884392 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4553B0720050E9E00884392 /* Main.storyboard */; };
 		F4553B0B20050E9E00884392 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4553B0A20050E9E00884392 /* Assets.xcassets */; };
-		F4553B0E20050E9E00884392 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4553B0C20050E9E00884392 /* LaunchScreen.storyboard */; };
 		F4553B1620050F1F00884392 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F4553B1520050F1F00884392 /* .gitignore */; };
 		F4553B1820051A2100884392 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4553B1720051A2100884392 /* SearchResult.swift */; };
 /* End PBXBuildFile section */
@@ -24,13 +24,13 @@
 		F401B48020057D41004C487C /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		F401B48220057F96004C487C /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		F401B48420058139004C487C /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
+		F40AC6F7200EC24B0090AFF0 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		F4534FBF200A9E1E00262B29 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		F4553B0020050E9E00884392 /* procura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = procura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4553B0320050E9E00884392 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4553B0520050E9E00884392 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F4553B0820050E9E00884392 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F4553B0A20050E9E00884392 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F4553B0D20050E9E00884392 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4553B0F20050E9E00884392 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4553B1520050F1F00884392 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		F4553B1720051A2100884392 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
@@ -53,10 +53,17 @@
 				F4553B0720050E9E00884392 /* Main.storyboard */,
 				F401B48020057D41004C487C /* SearchResultCell.xib */,
 				F401B48420058139004C487C /* NothingFoundCell.xib */,
-				F4553B0C20050E9E00884392 /* LaunchScreen.storyboard */,
 				F4534FBF200A9E1E00262B29 /* LoadingCell.xib */,
 			);
 			path = storyboard;
+			sourceTree = "<group>";
+		};
+		F40AC6F9200EC24F0090AFF0 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				F40AC6F7200EC24B0090AFF0 /* UIImageView+DownloadImage.swift */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		F4534FBC200A96C800262B29 /* cell */ = {
@@ -107,6 +114,7 @@
 				F4534FBE200A96D300262B29 /* controller */,
 				F4534FBD200A96CD00262B29 /* model */,
 				F4534FBC200A96C800262B29 /* cell */,
+				F40AC6F9200EC24F0090AFF0 /* utils */,
 				F401B48620058CD3004C487C /* storyboard */,
 				F4553B0A20050E9E00884392 /* Assets.xcassets */,
 				F4553B0F20050E9E00884392 /* Info.plist */,
@@ -177,7 +185,6 @@
 				F4553B1620050F1F00884392 /* .gitignore in Resources */,
 				F401B48120057D41004C487C /* SearchResultCell.xib in Resources */,
 				F401B48520058139004C487C /* NothingFoundCell.xib in Resources */,
-				F4553B0E20050E9E00884392 /* LaunchScreen.storyboard in Resources */,
 				F4553B0B20050E9E00884392 /* Assets.xcassets in Resources */,
 				F4553B0920050E9E00884392 /* Main.storyboard in Resources */,
 			);
@@ -194,6 +201,7 @@
 				F4553B1820051A2100884392 /* SearchResult.swift in Sources */,
 				F401B48320057F96004C487C /* SearchResultCell.swift in Sources */,
 				F4553B0420050E9E00884392 /* AppDelegate.swift in Sources */,
+				F40AC6F8200EC24B0090AFF0 /* UIImageView+DownloadImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,14 +214,6 @@
 				F4553B0820050E9E00884392 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		F4553B0C20050E9E00884392 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F4553B0D20050E9E00884392 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

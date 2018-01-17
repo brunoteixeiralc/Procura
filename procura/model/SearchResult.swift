@@ -74,7 +74,7 @@ class SearchResult: Codable, CustomStringConvertible {
             case "album": return "Álbum"
             case "audiobook": return "Livro de Áudio"
             case "book": return "Livro"
-            case "ebook": return "E-Book"
+            case "ebook": return "E-Livros"
             case "feature-movie": return "Filme"
             case "music-video": return "Clipe"
             case "podcast": return "Podcast"
