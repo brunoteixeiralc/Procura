@@ -47,7 +47,7 @@
                                                 <segment title="Aplicativos"/>
                                                 <segment title="E-Livros"/>
                                             </segments>
-                                            <color key="tintColor" red="0.1803921568627451" green="0.80000000000000004" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="segmentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Tyz-MI-MBw"/>
                                             </connections>
@@ -115,10 +115,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="240"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kF-cr-7eN">
-                                        <rect key="frame" x="8" y="208" width="224" height="24"/>
+                                        <rect key="frame" x="8" y="196" width="224" height="36"/>
+                                        <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="17"/>
-                                        <state key="normal" title="R$ 99,99" backgroundImage="PriceButton">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="R$ 99,99">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pv0-Tf-jRS">
@@ -129,7 +130,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="yTF-te-Biu"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -138,7 +139,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="D7p-1S-qFe"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -147,13 +148,13 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="Lq2-Q9-yg5"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWb-ir-N19">
                                                 <rect key="frame" x="0.0" y="87" width="224" height="24"/>
-                                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -172,6 +173,7 @@
                                     <constraint firstAttribute="bottom" secondItem="6kF-cr-7eN" secondAttribute="bottom" constant="8" id="S4n-bH-2yW"/>
                                     <constraint firstItem="YJa-Sr-pV8" firstAttribute="leading" secondItem="kRG-u3-PdZ" secondAttribute="leading" id="TEL-6v-Bfo"/>
                                     <constraint firstItem="pv0-Tf-jRS" firstAttribute="centerY" secondItem="kRG-u3-PdZ" secondAttribute="centerY" id="neK-Li-UKO"/>
+                                    <constraint firstItem="pv0-Tf-jRS" firstAttribute="top" secondItem="eeA-1G-kqI" secondAttribute="bottom" constant="38" id="rS1-AZ-crL"/>
                                     <constraint firstItem="eeA-1G-kqI" firstAttribute="top" secondItem="kRG-u3-PdZ" secondAttribute="top" constant="8" id="uxW-Rw-WEu"/>
                                     <constraint firstAttribute="trailing" secondItem="pv0-Tf-jRS" secondAttribute="trailing" constant="8" id="uzO-mg-5Uy"/>
                                     <constraint firstItem="eeA-1G-kqI" firstAttribute="leading" secondItem="kRG-u3-PdZ" secondAttribute="leading" constant="8" id="y6f-lb-oVn"/>
@@ -196,6 +198,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cw8-1x-8kA"/>
                     </view>
+                    <connections>
+                        <outlet property="artistNameLabel" destination="trS-fI-hjB" id="Eko-S3-dmF"/>
+                        <outlet property="artworkImageView" destination="YJa-Sr-pV8" id="fX2-jg-ifp"/>
+                        <outlet property="genreLabel" destination="wWb-ir-N19" id="8Qj-HI-66X"/>
+                        <outlet property="kindLabel" destination="Tbm-Ge-InF" id="BYg-Ut-Xzr"/>
+                        <outlet property="nameLabel" destination="rMu-IT-iyt" id="SW7-ec-rXu"/>
+                        <outlet property="popupView" destination="kRG-u3-PdZ" id="bLt-Ye-MON"/>
+                        <outlet property="priceButton" destination="6kF-cr-7eN" id="Qux-7n-ztv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fkr-yh-Uot" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -203,7 +214,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="PriceButton" width="11" height="24"/>
         <image name="close" width="50" height="50"/>
     </resources>
 </document>
