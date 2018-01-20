@@ -15,6 +15,7 @@
 		F40AC6FD200EDB1A0090AFF0 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AC6FC200EDB1A0090AFF0 /* DimmingPresentationController.swift */; };
 		F421B4F62012C47900D5FF11 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F421B4F52012C47900D5FF11 /* GradientView.swift */; };
 		F421B4F82012CC4C00D5FF11 /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F421B4F72012CC4C00D5FF11 /* BounceAnimationController.swift */; };
+		F421B4FA2012D69100D5FF11 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F421B4F92012D69100D5FF11 /* SlideOutAnimationController.swift */; };
 		F4534FC0200A9E1E00262B29 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4534FBF200A9E1E00262B29 /* LoadingCell.xib */; };
 		F4553B0420050E9E00884392 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4553B0320050E9E00884392 /* AppDelegate.swift */; };
 		F4553B0620050E9E00884392 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4553B0520050E9E00884392 /* SearchViewController.swift */; };
@@ -33,6 +34,7 @@
 		F40AC6FC200EDB1A0090AFF0 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 		F421B4F52012C47900D5FF11 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		F421B4F72012CC4C00D5FF11 /* BounceAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
+		F421B4F92012D69100D5FF11 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
 		F4534FBF200A9E1E00262B29 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		F4553B0020050E9E00884392 /* procura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = procura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4553B0320050E9E00884392 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				F40AC6FC200EDB1A0090AFF0 /* DimmingPresentationController.swift */,
 				F421B4F52012C47900D5FF11 /* GradientView.swift */,
 				F421B4F72012CC4C00D5FF11 /* BounceAnimationController.swift */,
+				F421B4F92012D69100D5FF11 /* SlideOutAnimationController.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				F4553B0420050E9E00884392 /* AppDelegate.swift in Sources */,
 				F421B4F62012C47900D5FF11 /* GradientView.swift in Sources */,
 				F40AC6F8200EC24B0090AFF0 /* UIImageView+DownloadImage.swift in Sources */,
+				F421B4FA2012D69100D5FF11 /* SlideOutAnimationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

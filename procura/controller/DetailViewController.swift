@@ -21,8 +21,6 @@ class DetailViewController: UIViewController {
     
     var searchResult: SearchResult!
     var downloadTask: URLSessionDownloadTask?
-    
-    let context = CIContext(options: nil)
 
     deinit {
         downloadTask?.cancel()
@@ -99,6 +97,11 @@ extension DetailViewController: UIViewControllerTransitioningDelegate{
         UIViewControllerAnimatedTransitioning? {
         return BounceAnimationController()
     }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SlideOutAnimationController()
+    }
+    
 }
 
 extension DetailViewController: UIGestureRecognizerDelegate {

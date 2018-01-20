@@ -12,9 +12,10 @@ import UIKit
 class BounceAnimationController: NSObject,UIViewControllerAnimatedTransitioning {
 
     func transitionDuration(using transitionContext:UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.4
+        return 0.5
     }
     
+    //keyframes de animação. Cada key frame tem uma ação.
     func animateTransition(using transitionContext:UIViewControllerContextTransitioning) {
         if let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),
             let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) {
