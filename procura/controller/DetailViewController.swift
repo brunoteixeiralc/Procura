@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreImage
 
 class DetailViewController: UIViewController {
     
@@ -19,7 +20,14 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var priceButton: UIButton!
     
     var searchResult: SearchResult!
+    var downloadTask: URLSessionDownloadTask?
+    
+    let context = CIContext(options: nil)
 
+    deinit {
+        downloadTask?.cancel()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         modalPresentationStyle = .custom
@@ -28,6 +36,8 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.clear
         
         if searchResult != nil {
             updateUI() }
@@ -40,6 +50,12 @@ class DetailViewController: UIViewController {
     
     @IBAction func close(){
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func openInStore(){
+        if let url = URL(string: searchResult.storeURL){
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
     
     func updateUI() {
@@ -65,6 +81,10 @@ class DetailViewController: UIViewController {
             priceText = ""
         }
         priceButton.setTitle(priceText, for: .normal)
+        
+        if let largeURL = URL(string: searchResult.imageLarge){
+            downloadTask = artworkImageView.loadImage(url: largeURL, thumbnail: false)
+        }
     }
     
 }
@@ -73,6 +93,11 @@ extension DetailViewController: UIViewControllerTransitioningDelegate{
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         return DimmingPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+    
+    func animationController(forPresented presented:UIViewController, presenting: UIViewController,source: UIViewController) ->
+        UIViewControllerAnimatedTransitioning? {
+        return BounceAnimationController()
     }
 }
 
