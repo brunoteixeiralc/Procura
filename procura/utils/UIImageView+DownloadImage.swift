@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import CoreImage
 
 extension UIImageView{
     
-    func loadImage(url: URL) -> URLSessionDownloadTask {
+    func loadImage(url: URL, thumbnail:Bool) -> URLSessionDownloadTask {
         let session = URLSession.shared
         
         let downloadTask = session.downloadTask(with: url,completionHandler: { [weak self] url, response, error in
@@ -18,7 +19,11 @@ extension UIImageView{
             let image = UIImage(data: data) {
                 DispatchQueue.main.async {
                     if let weakSelf = self {
-                        weakSelf.image = image
+                        if thumbnail{
+                            weakSelf.image = image
+                        }else{
+                           weakSelf.image = self?.blurEffect(image: image)
+                        }
                     }
                  }
             }
@@ -26,5 +31,24 @@ extension UIImageView{
 
         downloadTask.resume()
         return downloadTask
+    }
+    
+    func blurEffect(image:UIImage) -> UIImage {
+        
+        let context = CIContext(options: nil)
+        
+        let currentFilter = CIFilter(name: "CIGaussianBlur")
+        let beginImage = CIImage(image: image)
+        currentFilter!.setValue(beginImage, forKey: kCIInputImageKey)
+        currentFilter!.setValue(10, forKey: kCIInputRadiusKey)
+        
+        let cropFilter = CIFilter(name: "CICrop")
+        cropFilter!.setValue(currentFilter!.outputImage, forKey: kCIInputImageKey)
+        cropFilter!.setValue(CIVector(cgRect: beginImage!.extent), forKey: "inputRectangle")
+        
+        let output = cropFilter!.outputImage
+        let cgimg = context.createCGImage(output!, from: output!.extent)
+        let processedImage = UIImage(cgImage: cgimg!)
+        return processedImage
     }
 }

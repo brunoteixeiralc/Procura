@@ -26,7 +26,7 @@ class SearchResultCell: UITableViewCell {
         
         artworkImageView.image = UIImage(named:"Placeholder")
         if let smallURL = URL(string: result.imageSmall){
-            downloadTask = artworkImageView.loadImage(url: smallURL)
+            downloadTask = artworkImageView.loadImage(url: smallURL, thumbnail: true)
         }
     }
     
