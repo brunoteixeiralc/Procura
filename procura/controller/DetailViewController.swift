@@ -11,6 +11,11 @@ import CoreImage
 
 class DetailViewController: UIViewController {
     
+    enum AnimationStyle{
+        case slide
+        case fade
+    }
+    
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var artworkImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -21,6 +26,7 @@ class DetailViewController: UIViewController {
     
     var searchResult: SearchResult!
     var downloadTask: URLSessionDownloadTask?
+    var dismissStyle = AnimationStyle.fade
 
     deinit {
         downloadTask?.cancel()
@@ -47,6 +53,7 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func close(){
+        dismissStyle = .slide
         dismiss(animated: true, completion: nil)
     }
     
@@ -99,9 +106,13 @@ extension DetailViewController: UIViewControllerTransitioningDelegate{
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return SlideOutAnimationController()
+        switch dismissStyle {
+        case .fade:
+            return FadeOutAnimationController()
+        case .slide:
+             return SlideOutAnimationController()
+        }
     }
-    
 }
 
 extension DetailViewController: UIGestureRecognizerDelegate {
