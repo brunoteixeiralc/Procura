@@ -62,12 +62,32 @@ class SearchViewController: UIViewController {
             controller.view.frame = view.bounds
             view.addSubview(controller.view)
             addChildViewController(controller)
-            controller.didMove(toParentViewController: self)
+            
+            coordinator.animate(alongsideTransition: { (_) in
+                controller.view.alpha = 1
+                self.searchBar.resignFirstResponder()
+                if self.presentedViewController != nil{
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }, completion: { (_) in
+                controller.didMove(toParentViewController: self)
+            })
         }
     }
     
     func hideLandscape(with coordinator: UIViewControllerTransitionCoordinator){
         
+        if let controller = landscapeVC{
+            controller.willMove(toParentViewController: nil)
+            
+            coordinator.animate(alongsideTransition: { (_) in
+                controller.view.alpha = 0
+            }, completion: { (_) in
+                controller.view.removeFromSuperview()
+                controller.removeFromParentViewController()
+                self.landscapeVC = nil
+            })
+        }
     }
 
     
