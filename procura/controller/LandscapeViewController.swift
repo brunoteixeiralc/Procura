@@ -14,6 +14,7 @@ class LandscapeViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     
     var searchResults = [SearchResult]()
+    var search: Search!
     private var firstTime = true
     private var downloads = [URLSessionDownloadTask]()
     
@@ -51,14 +52,47 @@ class LandscapeViewController: UIViewController {
         
         if firstTime{
             firstTime = false
-            titleButtons(searchResults)
+            switch search.state{
+                case .notSeachedYet : break
+                case .loading: showSpinner()
+                case .noResults : showNothingFoundLabel()
+                case .results(let list):
+                    titleButtons(list)
+            }
         }
+    }
+    
+    //@objc quando é chamado via #selector
+    @objc func buttonPressed(_ sender: UIButton){
+        performSegue(withIdentifier: "ShowDetail", sender: sender)
     }
     
     @IBAction func pageChanged(_ sender: UIPageControl) {
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: {
             self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(sender.currentPage), y: 0)
         }, completion: nil)
+    }
+    
+    func searchResultsReceived(){
+        hideSpinner()
+        
+        switch search.state {
+        case .notSeachedYet, .loading :
+            break
+        case .noResults: showNothingFoundLabel()
+        case .results(let list):
+            titleButtons(list)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetail"{
+            if case .results(let list) = search.state {
+                let detailViewController = segue.destination as! DetailViewController
+                let searchResult = list[(sender as! UIButton).tag - 2000]
+                detailViewController.searchResult = searchResult
+            }
+        }
     }
     
     private func downloadImage(for searchResult:SearchResult, andPlaceOn button: UIButton){
@@ -79,6 +113,36 @@ class LandscapeViewController: UIViewController {
             task.resume()
             downloads.append(task)
         }
+    }
+    
+    private func showNothingFoundLabel() {
+        let label = UILabel(frame: CGRect.zero)
+        label.text = "Nenhum Resultado"
+        label.textColor = UIColor.black
+        label.backgroundColor = UIColor.clear
+        
+        label.sizeToFit()
+        
+        var rect = label.frame
+        //If you divide a number such as 11 by 2 you get 5.5. The ceil() function rounds up 5.5 to make 6, and then you multiply by 2 to get a final value of 12. This formula always gives you the next even number if the original is odd
+        rect.size.width = ceil(rect.size.width/2) * 2
+        rect.size.height = ceil(rect.size.height/2) * 2
+        label.frame = rect
+        
+        label.center = CGPoint(x: scrollView.bounds.midX, y: scrollView.bounds.midY)
+        view.addSubview(label)
+    }
+    
+    private func showSpinner(){
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        spinner.center = CGPoint(x: scrollView.bounds.midX + 0.5, y: scrollView.bounds.midY + 0.5)
+        spinner.tag = 1000
+        view.addSubview(spinner)
+        spinner.startAnimating()
+    }
+    
+    private func hideSpinner(){
+        view.viewWithTag(100)?.removeFromSuperview()
     }
     
     private func titleButtons(_ searchResults:[SearchResult]){
@@ -125,9 +189,10 @@ class LandscapeViewController: UIViewController {
         var row = 0
         var column = 0
         var x = marginX
-        for (_, result) in searchResults.enumerated() {
+        for (index, result) in searchResults.enumerated() {
             let button = UIButton(type: .custom)
-            //button.setBackgroundImage(UIImage(named: "LandscapeButton"),for: .normal)
+            button.tag = 2000 + index
+            button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
             button.frame = CGRect(x: x + paddingHorz, y: marginY + CGFloat(row)*itemHeight + paddingVert, width: buttonWidth, height: buttonHeight)
             downloadImage(for: result, andPlaceOn: button)
             
