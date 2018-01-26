@@ -7,25 +7,52 @@
 //
 
 import Foundation
+import UIKit
 
 typealias SearchComplete = (Bool) -> Void
 
 class Search {
-    var searchResults: [SearchResult] = []
-    var hasSearched = false
-    var isLoading = false
     
+    enum Category: Int {
+        case all = 0
+        case music = 1
+        case software = 2
+        case ebooks = 3
+        
+        var type: String{
+            switch self {
+            case .all: return ""
+            case .music: return "musicTrack"
+            case .software: return "software"
+            case .ebooks: return "ebook"
+            }
+        }
+    }
+    
+    enum AnimationStyle {
+        case slide
+        case fade
+    }
+    
+    enum State{
+        case notSeachedYet
+        case loading
+        case noResults
+        case results([SearchResult])
+    }
+    
+    //é privado, porém pode somente 'setar' na classe Search. Nas outras classes somente leitura 'get'
+    private(set) var state:State = .notSeachedYet
     private var dataTask: URLSessionDataTask? = nil
     
-    func performSearch(for text: String, category: Int, completion: @escaping SearchComplete){
+    func performSearch(for text: String, category: Category, completion: @escaping SearchComplete){
         if !text.isEmpty{
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
             
             dataTask?.cancel()
             
-            isLoading = true
-            
-            hasSearched = true
-            searchResults = []
+            state = .loading
             
             let url = self.iTunesURL(searchText: text,category: category)
             print("URL: \(url)")
@@ -34,26 +61,27 @@ class Search {
             dataTask = session.dataTask(with: url, completionHandler: { (data, response, error) in
                 
                 var success = false
+                var newState = State.notSeachedYet
                 
                 if let error = error as NSError?, error.code == -999{
                     return
                 
                 }else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200{
                     if let data = data{
-                        self.searchResults = self.parse(data: data)
-                        self.searchResults.sort(by: <)
-                        
-                        self.isLoading = false
+                        var searchResults = self.parse(data: data)
+                        if searchResults.isEmpty{
+                            newState = .noResults
+                        }else{
+                            searchResults.sort(by: <)
+                            newState = .results(searchResults)
+                        }
                         success = true
-                    }
-                    
-                    if !success {
-                        self.hasSearched = false
-                        self.isLoading = false
                     }
                 }
 
                 DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    self.state = newState
                     completion(success)
                 }
             })
@@ -72,14 +100,8 @@ class Search {
         }
     }
     
-    private func iTunesURL(searchText:String, category:Int) -> URL{
-        let kind: String
-        switch category {
-        case 1: kind = "musicTrack"
-        case 2: kind = "software"
-        case 3: kind = "ebook"
-        default: kind = ""
-        }
+    private func iTunesURL(searchText: String, category: Category) -> URL{
+        let kind = category.type
         
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         let urlString = "https://itunes.apple.com/search?term=\(encodedText)&country=br&limit=200&entity=\(kind)"
