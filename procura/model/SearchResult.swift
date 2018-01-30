@@ -47,6 +47,19 @@ class SearchResult: Codable, CustomStringConvertible {
         case collectionName, collectionViewUrl, collectionPrice
     }
     
+    private let typeForKind = [
+        "album": NSLocalizedString("Album",comment: "Localized kind: Album"),
+        "audiobook": NSLocalizedString("Audio Book",comment: "Localized kind: Audio Book"),
+        "book": NSLocalizedString("Book",comment: "Localized kind: Book"),
+        "ebook": NSLocalizedString("E-Book",comment: "Localized kind: E-Book"),
+        "feature-movie": NSLocalizedString("Movie",comment: "Localized kind: Feature Movie"),
+        "music-video": NSLocalizedString("Music Video",comment: "Localized kind: Music Video"),
+        "podcast": NSLocalizedString("Podcast",comment: "Localized kind: Podcast"),
+        "software": NSLocalizedString("App",comment: "Localized kind: Software"),
+        "song": NSLocalizedString("Song",comment: "Localized kind: Song"),
+        "tv-episode": NSLocalizedString("TV Episode",comment: "Localized kind: TV Episode"),
+    ]
+    
     var storeURL:String {
         return trackViewUrl ?? collectionViewUrl ?? ""
     }
@@ -70,20 +83,7 @@ class SearchResult: Codable, CustomStringConvertible {
     
     var type: String {
         let kind = self.kind ?? "audiobook"
-        switch kind {
-            case "album": return "Álbum"
-            case "audiobook": return "Livro de Áudio"
-            case "book": return "Livro"
-            case "ebook": return "E-Livros"
-            case "feature-movie": return "Filme"
-            case "music-video": return "Clipe"
-            case "podcast": return "Podcast"
-            case "software": return "Aplicativo"
-            case "song": return "Música"
-            case "tv-episode": return "Episódio de TV"
-            default: break
-        }
-        return "Desconhecido"
+        return typeForKind[kind] ?? kind
     }
     
     var description: String{

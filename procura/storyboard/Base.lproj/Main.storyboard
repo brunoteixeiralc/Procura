@@ -38,14 +38,14 @@
                                 <items>
                                     <navigationItem id="2J7-1L-aqC">
                                         <nil key="title"/>
-                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="ay6-uz-8OU">
-                                            <rect key="frame" x="122.5" y="1.5" width="323" height="29"/>
+                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="ay6-uz-8OU">
+                                            <rect key="frame" x="122.5" y="1" width="323" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
-                                                <segment title="Tudo"/>
-                                                <segment title="Música"/>
-                                                <segment title="Aplicativos"/>
-                                                <segment title="E-Livros"/>
+                                                <segment title="All"/>
+                                                <segment title="Music"/>
+                                                <segment title="Apps"/>
+                                                <segment title="E-Books"/>
                                             </segments>
                                             <color key="tintColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
@@ -55,7 +55,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <searchBar contentMode="redraw" placeholder="Aplicativos, artistas, álbuns, músicas,livros" translatesAutoresizingMaskIntoConstraints="NO" id="Fva-bq-YEy">
+                            <searchBar contentMode="redraw" placeholder="Apps ,artists ,album ,music ,ebooks" translatesAutoresizingMaskIntoConstraints="NO" id="Fva-bq-YEy">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -267,6 +267,6 @@
         <image name="close" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eR7-bY-JWM"/>
+        <segue reference="21v-Bk-wiA"/>
     </inferredMetricsTieBreakers>
 </document>
