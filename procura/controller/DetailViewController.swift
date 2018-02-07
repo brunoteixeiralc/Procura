@@ -24,18 +24,19 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var priceButton: UIButton!
     
+    var downloadTask: URLSessionDownloadTask?
+    var dismissStyle = AnimationStyle.fade
+    var isPopUp = false
+    
     var searchResult: SearchResult!{
         didSet{
             if isViewLoaded{
                 updateUI()
+                popupView.isHidden = false
             }
         }
     }
     
-    var downloadTask: URLSessionDownloadTask?
-    var dismissStyle = AnimationStyle.fade
-    var isPopUp = false
-
     deinit {
         downloadTask?.cancel()
     }
@@ -49,9 +50,6 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if searchResult != nil {
-            updateUI() }
-        
         if isPopUp{
             view.backgroundColor = UIColor.clear
 
@@ -63,7 +61,13 @@ class DetailViewController: UIViewController {
         }else{
            view.backgroundColor = UIColor.white
            popupView.isHidden = true
+           if let displayName = Bundle.main.localizedInfoDictionary?["CFBundleDisplayName"] as? String{
+                title = displayName
+            }
+        }
         
+        if searchResult != nil {
+            updateUI()
         }
     }
     

@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  procura
+
+  Created by Bruno Lemgruber on 07/02/2018.
+  Copyright © 2018 Bruno Lemgruber. All rights reserved.
+*/
+
+CFBundleDisplayName = "SearchApp";

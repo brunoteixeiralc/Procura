@@ -27,6 +27,7 @@
 		F4553B0B20050E9E00884392 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4553B0A20050E9E00884392 /* Assets.xcassets */; };
 		F4553B1620050F1F00884392 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F4553B1520050F1F00884392 /* .gitignore */; };
 		F4553B1820051A2100884392 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4553B1720051A2100884392 /* SearchResult.swift */; };
+		F48DAE59202B50F8007E455E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F48DAE5B202B50F8007E455E /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,8 @@
 		F4553B0F20050E9E00884392 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4553B1520050F1F00884392 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		F4553B1720051A2100884392 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		F48DAE5A202B50F8007E455E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F48DAE5C202B50FC007E455E /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,7 @@
 				F4553B0A20050E9E00884392 /* Assets.xcassets */,
 				F4553B0F20050E9E00884392 /* Info.plist */,
 				F4474EE1201F73F600A7BB18 /* Localizable.strings */,
+				F48DAE5B202B50F8007E455E /* InfoPlist.strings */,
 			);
 			path = procura;
 			sourceTree = "<group>";
@@ -222,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4474ECC201F6BAA00A7BB18 /* LoadingCell.xib in Resources */,
+				F48DAE59202B50F8007E455E /* InfoPlist.strings in Resources */,
 				F4553B1620050F1F00884392 /* .gitignore in Resources */,
 				F4474EC9201F6BA200A7BB18 /* SearchResultCell.xib in Resources */,
 				F4474EDF201F73F600A7BB18 /* Localizable.strings in Resources */,
@@ -299,6 +304,15 @@
 				F4474EDC201F6F8B00A7BB18 /* pt-BR */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F48DAE5B202B50F8007E455E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F48DAE5A202B50F8007E455E /* en */,
+				F48DAE5C202B50FC007E455E /* pt-BR */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

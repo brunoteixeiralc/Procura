@@ -27,6 +27,11 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if UIDevice.current.userInterfaceIdiom != .pad{
+            searchBar.becomeFirstResponder()
+        }
+        
+        //Ipad
         title = NSLocalizedString("Search", comment: "split master button")
         
         searchBar.becomeFirstResponder()
@@ -93,10 +98,6 @@ class SearchViewController: UIViewController {
             })
         }
     }
-
-    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
-        perfomSearch()
-    }
     
     func performStoreReques(with url:URL) -> Data?{
         do {
@@ -132,6 +133,14 @@ class SearchViewController: UIViewController {
         }
     }
     
+    private func hideMasterPane(){
+        UIView.animate(withDuration: 0.25, animations: {
+            self.splitViewController!.preferredDisplayMode = .primaryHidden
+        }) { _ in
+            self.splitViewController!.preferredDisplayMode = .automatic
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if segue.identifier == "ShowDetail"{
             if case .results(let list) = search.state {
@@ -139,8 +148,13 @@ class SearchViewController: UIViewController {
                 let indexPath = sender as! IndexPath
                 let searchResult = list[indexPath.row]
                 detailViewController.searchResult = searchResult
+                detailViewController.isPopUp = true
             }
          }
+    }
+    
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        perfomSearch()
     }
 }
 
@@ -194,6 +208,9 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
         } else{
             if case .results(let list) = search.state{
                 splitViewDetail?.searchResult = list[indexPath.row]
+                if splitViewController!.displayMode != .allVisible{
+                    hideMasterPane()
+                }
             }
         }
     }
