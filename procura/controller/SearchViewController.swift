@@ -48,12 +48,22 @@ class SearchViewController: UIViewController {
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        switch newCollection.verticalSizeClass {
-        case .compact:
-            showLandscape(with: coordinator)
-        case .regular:
-            hideLandscape(with: coordinator)
-        case .unspecified: break
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        let rect = UIScreen.main.bounds
+        //vertical e horizontal do plus. Verifica se está usando um iphone plus.
+        if (rect.width == 736 && rect.height == 414) || (rect.width == 414 && rect.height == 736){
+            if presentationController != nil{
+                dismiss(animated: true, completion: nil)
+            }
+        }else if UIDevice.current.userInterfaceIdiom != .pad{
+            switch newCollection.verticalSizeClass {
+            case .compact:
+                showLandscape(with: coordinator)
+            case .regular:
+                hideLandscape(with: coordinator)
+            case .unspecified: break
+            }
         }
     }
     

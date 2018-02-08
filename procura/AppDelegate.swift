@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Ipad
         detailVC.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem
         searchVC.splitViewDetail = detailVC
+        splitVC.delegate = self
         return true
     }
     
@@ -44,5 +45,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.tintColor = UIColor(red: 0/255, green: 0/255,
                                     blue: 0/255, alpha: 1)
     }
+}
+
+extension AppDelegate: UISplitViewControllerDelegate{
+    
+    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewControllerDisplayMode) {
+        print(#function)
+        
+        if displayMode == .primaryOverlay{
+            svc.dismiss(animated: true, completion: nil)
+        }
+    }
+    
 }
 

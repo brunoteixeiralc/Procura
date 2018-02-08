@@ -1,3 +1,8 @@
+/* Class = "UILabel"; text = "Send Support Email"; ObjectID = "8zy-eu-jS0"; */
+"8zy-eu-jS0.text" = "Enviar email para o suporte";
+
+/* Class = "UILabel"; text = "Rate This App"; ObjectID = "HVY-Mi-oGD"; */
+"HVY-Mi-oGD.text" = "Avalie o app";
 
 /* Class = "UIButton"; normalTitle = "R$ 99,99"; ObjectID = "6kF-cr-7eN"; */
 "6kF-cr-7eN.normalTitle" = "R$ 99,99";
@@ -28,3 +33,7 @@
 
 /* Class = "UILabel"; text = "Genre"; ObjectID = "wWb-ir-N19"; */
 "wWb-ir-N19.text" = "Genre";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "dkH-oH-mYb"; */
+"dkH-oH-mYb.text" = "Sobre";
+
