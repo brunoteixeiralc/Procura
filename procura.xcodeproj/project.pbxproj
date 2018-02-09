@@ -27,6 +27,8 @@
 		F4553B0B20050E9E00884392 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4553B0A20050E9E00884392 /* Assets.xcassets */; };
 		F4553B1620050F1F00884392 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F4553B1520050F1F00884392 /* .gitignore */; };
 		F4553B1820051A2100884392 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4553B1720051A2100884392 /* SearchResult.swift */; };
+		F48DAE59202B50F8007E455E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F48DAE5B202B50F8007E455E /* InfoPlist.strings */; };
+		F48DAE63202CA6A7007E455E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48DAE62202CA6A7007E455E /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +47,6 @@
 		F4474ED2201F6C4700A7BB18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoadingCell.xib; sourceTree = "<group>"; };
 		F4474ED3201F6C4F00A7BB18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchResultCell.xib; sourceTree = "<group>"; };
 		F4474ED6201F6CD300A7BB18 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LoadingCell.strings"; sourceTree = "<group>"; };
-		F4474EDC201F6F8B00A7BB18 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
 		F4474EE2201F7A9300A7BB18 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		F4474EE3201F7AE800A7BB18 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F4553B0020050E9E00884392 /* procura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = procura.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +57,10 @@
 		F4553B0F20050E9E00884392 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4553B1520050F1F00884392 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		F4553B1720051A2100884392 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		F48DAE5A202B50F8007E455E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F48DAE5C202B50FC007E455E /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F48DAE61202CA392007E455E /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
+		F48DAE62202CA6A7007E455E /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +129,7 @@
 				F4553B0520050E9E00884392 /* SearchViewController.swift */,
 				F40AC6FA200ED2A20090AFF0 /* DetailViewController.swift */,
 				F418E06420163850002FDC60 /* LandscapeViewController.swift */,
+				F48DAE62202CA6A7007E455E /* MenuViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -157,6 +163,7 @@
 				F4553B0A20050E9E00884392 /* Assets.xcassets */,
 				F4553B0F20050E9E00884392 /* Info.plist */,
 				F4474EE1201F73F600A7BB18 /* Localizable.strings */,
+				F48DAE5B202B50F8007E455E /* InfoPlist.strings */,
 			);
 			path = procura;
 			sourceTree = "<group>";
@@ -222,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4474ECC201F6BAA00A7BB18 /* LoadingCell.xib in Resources */,
+				F48DAE59202B50F8007E455E /* InfoPlist.strings in Resources */,
 				F4553B1620050F1F00884392 /* .gitignore in Resources */,
 				F4474EC9201F6BA200A7BB18 /* SearchResultCell.xib in Resources */,
 				F4474EDF201F73F600A7BB18 /* Localizable.strings in Resources */,
@@ -241,6 +249,7 @@
 				F421B4FC2018090900D5FF11 /* Search.swift in Sources */,
 				F4553B0620050E9E00884392 /* SearchViewController.swift in Sources */,
 				F40AC6FD200EDB1A0090AFF0 /* DimmingPresentationController.swift in Sources */,
+				F48DAE63202CA6A7007E455E /* MenuViewController.swift in Sources */,
 				F418E06720178D04002FDC60 /* FadeOutAnimationController.swift in Sources */,
 				F4553B1820051A2100884392 /* SearchResult.swift in Sources */,
 				F401B48320057F96004C487C /* SearchResultCell.swift in Sources */,
@@ -296,9 +305,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				F4553B0820050E9E00884392 /* Base */,
-				F4474EDC201F6F8B00A7BB18 /* pt-BR */,
+				F48DAE61202CA392007E455E /* pt-BR */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F48DAE5B202B50F8007E455E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F48DAE5A202B50F8007E455E /* en */,
+				F48DAE5C202B50FC007E455E /* pt-BR */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

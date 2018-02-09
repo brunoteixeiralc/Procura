@@ -22,9 +22,17 @@ class SearchViewController: UIViewController {
     
     private let search = Search()
     var landscapeVC: LandscapeViewController?
+    weak var splitViewDetail: DetailViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if UIDevice.current.userInterfaceIdiom != .pad{
+            searchBar.becomeFirstResponder()
+        }
+        
+        //Ipad
+        title = NSLocalizedString("Search", comment: "split master button")
         
         searchBar.becomeFirstResponder()
         tableview.contentInset = UIEdgeInsetsMake(108, 0, 0, 0)
@@ -40,12 +48,22 @@ class SearchViewController: UIViewController {
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        switch newCollection.verticalSizeClass {
-        case .compact:
-            showLandscape(with: coordinator)
-        case .regular:
-            hideLandscape(with: coordinator)
-        case .unspecified: break
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        let rect = UIScreen.main.bounds
+        //vertical e horizontal do plus. Verifica se está usando um iphone plus.
+        if (rect.width == 736 && rect.height == 414) || (rect.width == 414 && rect.height == 736){
+            if presentationController != nil{
+                dismiss(animated: true, completion: nil)
+            }
+        }else if UIDevice.current.userInterfaceIdiom != .pad{
+            switch newCollection.verticalSizeClass {
+            case .compact:
+                showLandscape(with: coordinator)
+            case .regular:
+                hideLandscape(with: coordinator)
+            case .unspecified: break
+            }
         }
     }
     
@@ -90,10 +108,6 @@ class SearchViewController: UIViewController {
             })
         }
     }
-
-    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
-        perfomSearch()
-    }
     
     func performStoreReques(with url:URL) -> Data?{
         do {
@@ -129,6 +143,14 @@ class SearchViewController: UIViewController {
         }
     }
     
+    private func hideMasterPane(){
+        UIView.animate(withDuration: 0.25, animations: {
+            self.splitViewController!.preferredDisplayMode = .primaryHidden
+        }) { _ in
+            self.splitViewController!.preferredDisplayMode = .automatic
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if segue.identifier == "ShowDetail"{
             if case .results(let list) = search.state {
@@ -136,8 +158,13 @@ class SearchViewController: UIViewController {
                 let indexPath = sender as! IndexPath
                 let searchResult = list[indexPath.row]
                 detailViewController.searchResult = searchResult
+                detailViewController.isPopUp = true
             }
          }
+    }
+    
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        perfomSearch()
     }
 }
 
@@ -182,8 +209,20 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableview.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+        searchBar.resignFirstResponder()
+        
+        if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact{
+            tableview.deselectRow(at: indexPath, animated: true)
+            performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+        
+        } else{
+            if case .results(let list) = search.state{
+                splitViewDetail?.searchResult = list[indexPath.row]
+                if splitViewController!.displayMode != .allVisible{
+                    hideMasterPane()
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {

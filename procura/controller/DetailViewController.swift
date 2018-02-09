@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreImage
+import MessageUI
 
 class DetailViewController: UIViewController {
     
@@ -24,10 +25,19 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var priceButton: UIButton!
     
-    var searchResult: SearchResult!
     var downloadTask: URLSessionDownloadTask?
     var dismissStyle = AnimationStyle.fade
-
+    var isPopUp = false
+    
+    var searchResult: SearchResult!{
+        didSet{
+            if isViewLoaded{
+                updateUI()
+                popupView.isHidden = false
+            }
+        }
+    }
+    
     deinit {
         downloadTask?.cancel()
     }
@@ -41,15 +51,25 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.clear
+        if isPopUp{
+            view.backgroundColor = UIColor.clear
+
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
+            gestureRecognizer.cancelsTouchesInView = false
+            gestureRecognizer.delegate = self
+            view.addGestureRecognizer(gestureRecognizer)
+        
+        }else{
+           view.backgroundColor = UIColor.white
+           popupView.isHidden = true
+           if let displayName = Bundle.main.localizedInfoDictionary?["CFBundleDisplayName"] as? String{
+                title = displayName
+            }
+        }
         
         if searchResult != nil {
-            updateUI() }
-        
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
-        gestureRecognizer.cancelsTouchesInView = false
-        gestureRecognizer.delegate = self
-        view.addGestureRecognizer(gestureRecognizer)
+            updateUI()
+        }
     }
     
     @IBAction func close(){
@@ -79,7 +99,7 @@ class DetailViewController: UIViewController {
         formatter.currencyCode = searchResult.currency
         let priceText: String
         if searchResult.price == 0 {
-            priceText = "Grátis"
+            priceText = NSLocalizedString("Free", comment: "Localized kind: Free")
         } else if let text = formatter.string(from: searchResult.price as NSNumber) {
             priceText = text
         } else {
@@ -89,6 +109,13 @@ class DetailViewController: UIViewController {
         
         if let largeURL = URL(string: searchResult.imageLarge){
             downloadTask = artworkImageView.loadImage(url: largeURL, thumbnail: false)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowMenu"{
+            let controller = segue.destination as! MenuViewController
+            controller.delegate = self
         }
     }
     
@@ -118,5 +145,28 @@ extension DetailViewController: UIViewControllerTransitioningDelegate{
 extension DetailViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,shouldReceive touch: UITouch) -> Bool {
         return (touch.view === self.view)
+    }
+}
+
+extension DetailViewController: MenuViewControllerDelegate{
+    
+    func menuViewControllerSendEmail(_ controller: MenuViewController) {
+        dismiss(animated: true){
+            if MFMailComposeViewController.canSendMail(){
+                let controller = MFMailComposeViewController()
+                controller.modalPresentationStyle = .formSheet
+                controller.mailComposeDelegate = self
+                controller.setSubject(NSLocalizedString("Support Request", comment: "Email Subject"))
+                controller.setToRecipients(["brunoteixeiralc@gmail.com"])
+                self.present(controller, animated: true, completion: nil)
+            }
+        }
+    }
+}
+
+extension DetailViewController: MFMailComposeViewControllerDelegate{
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
     }
 }
