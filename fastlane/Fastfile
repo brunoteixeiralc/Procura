@@ -53,12 +53,6 @@ end
 desc "Release app"
     lane :release do
         match(type: "appstore", readonly: true)
-        build_app(scheme: "procura",
-            clean:true,
-            project: "procura.xcodeproj",
-            include_bitcode: true,
-            export_method:"app-store"
-        )
         appstore(skip_metadata:true,
             skip_screenshots:true,
             submit_for_review:true,
