@@ -1,0 +1,79 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+#.env.default
+#fastlane beta version_number:99 build_number:99
+#fastlane release version_number:99
+
+default_platform(:ios)
+
+platform :ios do
+
+before_all do
+    update_fastlane
+end
+
+desc "Beta app"
+    lane :beta do |options|
+        match(type: "appstore", readonly: false)
+        increment_version_number(
+            version_number: options[:version_number],
+            xcodeproj: "procura.xcodeproj"
+        )
+        increment_build_number(
+            build_number: options[:build_number],
+            xcodeproj: "procura.xcodeproj"
+        )
+        changelog = prompt(
+            text: "What's new (must be at least 4 characters long): ",
+            multi_line_end_keyword: "END"
+        )
+        build_app(scheme: "procura",
+            clean:true,
+            project: "procura.xcodeproj",
+            include_bitcode: true,
+            export_method:"app-store"
+        )
+        pilot(changelog: changelog,
+            beta_app_feedback_email:"brunoteixeiralc@gmail.com",
+            beta_app_description: "ProcuraApp BETA!",
+            distribute_external:true,
+            groups: "Testes Externos ProcuraApp"
+        )   
+        slack(message: "Successfully uploaded to Test Flight",
+            success:true)
+end
+
+
+desc "Release app"
+    lane :release do
+        match(type: "appstore", readonly: true)
+        build_app(scheme: "procura",
+            clean:true,
+            project: "procura.xcodeproj",
+            include_bitcode: true,
+            export_method:"app-store"
+        )
+        appstore(skip_metadata:true,
+            skip_screenshots:true,
+            submit_for_review:true,
+            automatic_release:true,
+            skip_binary_upload:true
+        )
+        slack(message: "Successfully uploaded a new App Store build",
+            success:true)
+end
+
+error do |lane, exception|
+    slack(
+        message: exception.message,
+        success: false
+    )
+end
+
+end
